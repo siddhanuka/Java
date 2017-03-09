@@ -1,0 +1,54 @@
+package chatapp;
+
+import java.awt.BorderLayout;
+import java.awt.TextArea;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
+public class Clientside {
+
+	JFrame frame;
+	JTextField textfield;
+	JTextArea textarea;
+	JButton sendbutton;
+	JPanel panel;
+	
+	public static void main(String[] args) {
+		Clientside client=new Clientside();
+		client.go();
+
+	}
+
+	private void go() {
+		frame=new JFrame("CHAT APPLICATION");
+		panel=new JPanel();
+		textarea=new JTextArea(20,30);
+		textfield=new JTextField();
+		textarea.setLineWrap(true);
+		textarea.setWrapStyleWord(true);
+		textarea.setEditable(false);
+		JScrollPane scrollpane=new JScrollPane(textarea);
+		scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollpane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		sendbutton=new JButton("SEND");
+		panel.add(scrollpane);
+		panel.add(textfield);
+		panel.add(sendbutton);
+		
+		Thread t=new Thread(new readmessage());
+		t.run();
+		
+		frame.getContentPane().add(BorderLayout.CENTER, panel);
+		frame.setSize(400,400);
+		frame.setVisible(true);
+		
+		
+	}
+
+}
