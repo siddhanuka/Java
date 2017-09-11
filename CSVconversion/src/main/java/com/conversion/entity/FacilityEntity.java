@@ -9,7 +9,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="facility")
 public class FacilityEntity {
-
 	@Id
 	@Column(name="tran_id")
 	@GeneratedValue
@@ -42,15 +41,12 @@ public class FacilityEntity {
 	@Column(name="robot_flag")
 	private String robotFlag;
 	
-	@Column(name="facility_type")
-	private int facilityType;
-	
 	public FacilityEntity() {
 		
 	}
 	
 	public FacilityEntity(int id, String name, String phone, String city, String state, String address, String zip,
-			String note, String code, int facilityType, String robotFlag) {
+			String note, String code, String robotFlag) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -61,7 +57,6 @@ public class FacilityEntity {
 		this.zip = zip;
 		this.note = note;
 		this.code = code;
-		this.facilityType = facilityType;
 		this.robotFlag = robotFlag;
 	}
 
@@ -139,14 +134,6 @@ public class FacilityEntity {
 		this.code = code;
 	}
 
-	public int getFacilityType() {
-		return facilityType;
-	}
-
-	public void setFacilityType(int facilityType) {
-		this.facilityType = facilityType;
-	}
-
 	public String getRobotFlag() {
 		return robotFlag;
 	}
@@ -155,5 +142,12 @@ public class FacilityEntity {
 		this.robotFlag = robotFlag;
 	}
 
+
+	@Override
+	public String toString() {
+		return "FacilityEntity [id=" + id + ", name=" + name + ", code=" + code + ", address=" + address + ", city="
+				+ city + ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", note=" + note + ", robotFlag="
+				+ robotFlag + "]";
+	}
 	
 }
